@@ -35,7 +35,7 @@ resource "aws_s3_bucket_object" "error_html" {
   content_type = "text/html"  # Setting the MIME type
 }
 
-# CloudFront Origin Access Identity create karnge 
+# CloudFront Origin Access Identity create karnge  ### Acts as a bridge between CloudFront and S3
 resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
   comment = "Origin Access Identity for static website"
 }
@@ -46,6 +46,8 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution" {
     domain_name = aws_s3_bucket.website_bucket.bucket_regional_domain_name
     origin_id   = var.bucket_name
 
+
+    ### Connects CloudFront to S3 bucket OAI ke help se 
     s3_origin_config {
       origin_access_identity = aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path
     }
