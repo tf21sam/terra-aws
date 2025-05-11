@@ -17,7 +17,7 @@ resource "aws_s3_bucket" "website_bucket" {
   bucket = var.bucket_name
 }
 
-# Upload index.html to S3 bucket
+# index.html uplode karnge s3 main
 resource "aws_s3_bucket_object" "index_html" {
   bucket = aws_s3_bucket.website_bucket.id
   key    = "index.html"
@@ -26,7 +26,7 @@ resource "aws_s3_bucket_object" "index_html" {
   content_type = "text/html"  # Setting the MIME type
 }
 
-# Upload error.html to S3 bucket
+# error.html uploade karnge s3 main 
 resource "aws_s3_bucket_object" "error_html" {
   bucket = aws_s3_bucket.website_bucket.id
   key    = "error.html"
@@ -35,12 +35,12 @@ resource "aws_s3_bucket_object" "error_html" {
   content_type = "text/html"  # Setting the MIME type
 }
 
-# Create CloudFront Origin Access Identity
+# CloudFront Origin Access Identity create karnge 
 resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
   comment = "Origin Access Identity for static website"
 }
 
-# Create CloudFront Distribution
+# CloudFront Distribution create karnge 
 resource "aws_cloudfront_distribution" "cloudfront_distribution" {
   origin {
     domain_name = aws_s3_bucket.website_bucket.bucket_regional_domain_name
